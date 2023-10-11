@@ -1,17 +1,3 @@
-locals {
-  eks_policies = [
-    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-    "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  ]
-
-  node_policies = [
-    "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-    "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
-    "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  ]
-}
-
 resource "aws_iam_role" "nodes" {
   name               = "eks-node-group-nodes"
   assume_role_policy = data.aws_iam_policy_document.nodes.json
